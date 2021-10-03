@@ -11,6 +11,7 @@ import { FormGroup, FormControl  } from '@angular/forms';
 })
 export class EstoquesComponent implements OnInit {
 
+
 faCheckCircle = faCheckCircle;
 estoques: Estoque[] = [];
 formulario: any;
@@ -50,6 +51,21 @@ ExibirEstoque(): void{
     this.estoques = [];
   }
 }
+AtualizarEstoque(estoqueId: string): void{
+ const indice : number = this.estoques.findIndex(p=>p.estoqueId === estoqueId);
+
+  if(this.estoques[indice].isComprado){
+    this.estoques[indice].isComprado = false;
+ }else{
+   }
+    this.estoques[indice].isComprado = true;
+    localStorage.setItem('BD', JSON.stringify(this.estoques));
+}
+DeletaEstoque(estoqueId: string): void{
+  const indice : number = this.estoques.findIndex(p=>p.estoqueId === estoqueId);
+  this.estoques.splice(indice, 1);
+
+ }
 
 
 

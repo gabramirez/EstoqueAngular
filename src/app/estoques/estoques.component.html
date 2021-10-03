@@ -42,7 +42,7 @@
             </div>
             <div class="col-2">
               <div class="form-group">
-                <input type="text" class="form-control form-control-sm" placeholder="Foto" formControlName="foto" />
+                <input type="file" class="form-control form-control-sm" placeholder="Foto" formControlName="foto" />
               </div>
             </div>
             <div class="col-2">
@@ -63,7 +63,7 @@
         <table class="table table-striped table-hover table-sm">
           <tr class="thead-ligth">
 
-            <th>Quantidade</th>
+
             <th>Marca</th>
             <th>Modelo</th>
             <th>Placa Mãe</th>
@@ -74,14 +74,22 @@
           </tr>
           <tr *ngFor="let estoque of estoques" [class.table-danger]="estoque.isComprado == false">
 
-            <td>{{estoque.quantidade}}</td>
+
             <td>{{estoque.marca}}</td>
-            <td>{{estoque.modelo}}</td>
+            <td>{{estoque.modelo}}</td>s
             <td>{{estoque.placamae}}</td>
             <td>{{estoque.memoria}}</td>
             <td>{{estoque.velocidade}}</td>
-            <td>{{estoque.foto}}</td>
+            <td><img src="{{estoque.foto}}" alt="{{estoque.foto}}">
+            <td><button type="button" class="btn btn-sm btn-outline-info rounded-circle"
+                (click)="AtualizarEstoque(estoque.estoqueId)">
+                Atualizar
+              </button></td>
 
+              <td><button type="button" class="btn btn-sm btn-outline-info rounded-circle"
+                (click)="DeletaEstoque(estoque.estoqueId)">
+                Excluir
+              </button></td>
 
 
 
