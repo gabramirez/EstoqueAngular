@@ -42,7 +42,7 @@
             </div>
             <div class="col-2">
               <div class="form-group">
-                <input type="file" class="form-control form-control-sm" placeholder="Foto" formControlName="foto" />
+                <input id="foto" type="file" class="form-control form-control-sm" placeholder="Foto" formControlName="foto" />
               </div>
             </div>
             <div class="col-2">
@@ -80,7 +80,8 @@
             <td>{{estoque.placamae}}</td>
             <td>{{estoque.memoria}}</td>
             <td>{{estoque.velocidade}}</td>
-            <td><img src="{{estoque.foto}}" alt="{{estoque.foto}}">
+            <td><img class="imagemTabela" src={{estoque.foto}} alt="{{estoque.foto}}" ></td>
+
             <td><button type="button" class="btn btn-sm btn-outline-info rounded-circle"
                 (click)="AtualizarEstoque(estoque.estoqueId)">
                 Atualizar

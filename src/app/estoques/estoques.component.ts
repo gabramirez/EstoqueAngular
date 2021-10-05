@@ -3,7 +3,6 @@ import { Estoque } from './estoque';
 import { Guid } from 'guid-typescript';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { FormGroup, FormControl  } from '@angular/forms';
-
 @Component({
   selector: 'app-produtos',
   templateUrl: './estoques.component.html',
@@ -33,17 +32,30 @@ constructor() { }
       foto: new FormControl()
     });
   }
-CadastrarProduto(): void{
+async CadastrarProduto(){
 
   this.formulario.value.estoqueId = Guid.create().toString();
   this.formulario.value.isComprado = false;
   const estoque : Estoque  = this.formulario.value;
-  console.log(estoque)
+  estoque['foto'] = await this.plotImage();
   this.estoques.push(estoque);
   localStorage.setItem('BD',JSON.stringify(this.estoques));
   this.existeItem = true;
   this.formulario.reset();
 }
+
+plotImage() {
+  return new Promise((resolve, reject) => {
+  const file: any = document.getElementById('foto');
+  const reader = new FileReader();
+  reader.readAsDataURL(file['files'][0]);
+  reader.onload = function () {
+  localStorage.setItem("image", reader.result as any);
+  resolve(localStorage.getItem("image"));
+  };
+  });
+  }
+
 ExibirEstoque(): void{
   if(localStorage.getItem('BD')){
     this.estoques = JSON.parse(localStorage.getItem('BD')||'{}');

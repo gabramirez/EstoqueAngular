@@ -7,5 +7,5 @@ export class Estoque {
   placamae: string = "";
   memoria: string = "";
   velocidade: string = "";
-  foto: string ="";
+  foto: any;
 }
